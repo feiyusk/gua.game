@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>guario</title>
+    </head>
+    <body>
+        <canvas id="id-canvas" width="640" height="640"></canvas>
+
+
+<script>
+// TODO:
+// 在Firefox开发者版本中没有 log 出来数据，之后用 node 试试；
+
+/*
+8x8 像素每个方块
+2 bits 每个像素
+16 bytes 一个图块
+
+每页 8 x 8 个图块，就是 宽高 各 64 像素
+*/
+
+const e = sel => document.querySelector(sel)
+const log = console.log.bind(console)
+
+const ajax = request => {
+    let r = new XMLHttpRequest()
+    r.open('GET', request.url, true)
+    r.responseType = 'arraybuffer'
+    r.onreadystatechange = event => {
+        if (r.reandyState == 4) {
+            request.callback(r.response)
+        }
+    }
+    r.send()
+}
+
+const __main = () => {
+    let request = {
+        url: 'mario.nes',
+        callback(r) {
+            let bytes = new Uint8Array(r)
+            log('bytes', bytes)
+        },
+    }
+    ajax(request)
+}
+
+__main()
+</script>
+    </body>
+</html>
