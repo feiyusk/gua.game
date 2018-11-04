@@ -23,27 +23,40 @@ var enableDebugMode = function(game, enable) {
 
 var GuaAddAnimation = (images, animation) => {
     var a = animation
-    // TODO, 现在只支持 2 位数的 frames, 应该做成通用的
-    for (var i = 0; i < a.numberOfFrames; i++) {
-        // 1  01
-        // 11  11
-        var index = String(i)
-        if (i < 10) {
-            index = '0' + index
+    var pathFormat = a.pathFormat
+    var keyName = a.name
+    for (var action of a.actions) {
+        var name = action.name
+        var numberOfFrames = action.numberOfFrames
+        log('actions', action)
+        // pathFormat: 'img/zombie/[action]/zombie_[action]_[index].png',
+        var p = pathFormat.replace('[action]', name).replace('[action]', name)
+        for (var i = 0; i < numberOfFrames; i++) {
+            var index = '0'.repeat(String(numberOfFrames).length - String(i).length) + String(i)
+            // var path = `${p}${index}`
+            var key = keyName +name + index
+            var value = p.replace('[index]', index)
+            images[key] = value
         }
-        //
-        var key = a.name + index
-        var value = a.pathFormat.replace('{}', index)
-        images[key] = value
     }
 }
 
 var __main = function() {
     // zombie
     let animationZombie = {
-        numberOfFrames: 15,
         name: 'bhzombie',
-        pathFormat: 'img/BucketheadZombie/zombie_{}.png',
+        // zombie/attack
+        pathFormat: 'img/zombie/[action]/zombie_[action]_[index].png',
+        actions: [
+            {
+                name: 'walking',
+                numberOfFrames: 15,
+            },
+            {
+                name: 'attack',
+                numberOfFrames: 11,
+            },
+        ]
     }
     var images = {
         // zombie
