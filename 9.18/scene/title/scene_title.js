@@ -7,6 +7,7 @@ class SceneTitle extends GuaScene {
     setup() {
         this.zombies = []
         this.plants = []
+        this.bullets = []
         this.offsetX = 255
         this.offsetY = 100
         this.zombieOffsetY = 30
@@ -76,6 +77,19 @@ class SceneTitle extends GuaScene {
 
     }
     updateHit() {
-
+        // log('bullets', this.bullets.length)
+        for (let z of this.zombies) {
+            let row = z.row
+            for (let b of this.bullets) {
+                // log('row', b.row, row)
+                if (b.row == row) {
+                    // 判断是否相撞
+                    if (z.x - b.x < 20) {
+                        // TODO, 临时性的修改
+                        b.x += 10000
+                    }
+                }
+            }
+        }
     }
 }
