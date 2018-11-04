@@ -61,6 +61,10 @@ class SceneTitle extends GuaScene {
     update() {
         super.update()
         // 检测开火和碰撞
+        this.updateFire()
+        this.updateHit()
+    }
+    updateFire() {
         for (let z of this.zombies) {
             let row = z.row
             for (let p of this.plants) {
@@ -69,5 +73,9 @@ class SceneTitle extends GuaScene {
                 }
             }
         }
+
+    }
+    updateHit() {
+
     }
 }

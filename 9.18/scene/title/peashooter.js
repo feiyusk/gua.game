@@ -37,6 +37,7 @@ class PeaShooter extends GuaAnimation {
             let fix = 30
             pb.x = this.x + fix
             pb.y = this.y
+            pb.row = this.row
             this.game.scene.addElement(pb)
         }
     }
