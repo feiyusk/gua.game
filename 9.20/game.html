@@ -74,11 +74,14 @@
             }
 
             var templateControl = function(key, item) {
+                var min = item.min || 0
+                var max = item.max || 100
                 var t = `
                     <div class="">
                         <label>
                             <input class="gua-auto-slider" type="range"
-                                max="300"
+                                min="${min}"
+                                max="${max}"
                                 value="${item.value}"
                                 data-value="config.${key}"
                             >

@@ -1,7 +1,9 @@
 const config = {
-    bird_speed: {
-        _comment: '鸟的速度',
-        value: 2
+    hit_offset: {
+        _comment: '子弹的碰撞修订',
+        value: -30,
+        min: -50,
+        max: 100,
     },
     pipe_space: {
         _comment: '2 根管子垂直方向的间距',
