@@ -14,4 +14,7 @@ class PeaBullet extends GuaImage {
     update() {
         this.x += this.speed
     }
+    remove() {
+        this.scene.removeBullet(this)
+    }
 }

@@ -1,9 +1,9 @@
-// log('*************** scene title')
 class SceneTitle extends GuaScene {
     constructor(game) {
         super(game)
         this.setup()
     }
+    // setup 系列
     setup() {
         this.zombies = []
         this.plants = []
@@ -34,6 +34,15 @@ class SceneTitle extends GuaScene {
             }
         }
     }
+    setupZombies() {
+        this.addZombie(1)
+        this.addZombie(3)
+        //
+        // window.z = zombie
+    }
+    setupInputs() {
+    }
+    // add 系列
     addPlant(plant, row, column) {
         let p = plant
         p.x = this.offsetX + column * this.widthOfColumn
@@ -51,16 +60,20 @@ class SceneTitle extends GuaScene {
         this.addElement(zombie)
         this.zombies.push(zombie)
     }
-    setupZombies() {
-        this.addZombie(1)
-        this.addZombie(3)
-        // 调试用
-        // window.z = zombie
-        // 可以在 浏览器控制台中用 z 这个全局变量来调试，切换动画角色：
-        // z.changeAnimation('walking')   z.changeAnimation('walking')
+    // remove 系列
+    removeBullet(bullet) {
+        this.bullets = this.bullets.filter(e => {
+            return e != bullet
+        })
+        this.removeElement(bullet)
     }
-    setupInputs() {
+    removeZombie(zombie) {
+        this.zombie = this.zombie.filter(z => {
+            return z != zombie
+        })
+        this.removeElement(zombie)
     }
+    // debug
     debug() {
         this.bulletHitOffset = config.hit_offset.value
         // log('debug')
@@ -91,8 +104,9 @@ class SceneTitle extends GuaScene {
                 if (b.row == row) {
                     // 判断是否相撞
                     if (z.x - b.x < this.bulletHitOffset) {
+                        z.被击中(b.damage)
                         // TODO, 临时性的修改
-                        b.x += 10000
+                        b.remove()
                     }
                 }
             }
