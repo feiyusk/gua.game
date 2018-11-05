@@ -11,6 +11,9 @@ class PeaBullet extends GuaImage {
     static new(...args) {
         return new this(...args)
     }
+    debug() {
+        this.speed = config.bullet_speed.value
+    }
     update() {
         this.x += this.speed
     }

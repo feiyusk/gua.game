@@ -15,17 +15,20 @@ class Zombie extends GuaAnimation {
                 },
             ]
         }
-        return new this(game, animation)
+        let z = new this(game, animation)
+        z.setup()
+        return z
     }
     update() {
         super.update()
         this.x -= 0.3
     }
     setup() {
-        this.hp = 5
+        this.hp = 3
     }
     被击中(damage) {
         this.hp -= damage
+        log('被击中', damage, this.hp)
         if (this.hp < 1) {
             this.die()
         }

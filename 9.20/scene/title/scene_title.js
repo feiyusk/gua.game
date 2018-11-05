@@ -68,9 +68,10 @@ class SceneTitle extends GuaScene {
         this.removeElement(bullet)
     }
     removeZombie(zombie) {
-        this.zombie = this.zombie.filter(z => {
+        this.zombies = this.zombies.filter(z => {
             return z != zombie
         })
+        // log('remove zombie', this.zombies.length, zombie)
         this.removeElement(zombie)
     }
     // debug
@@ -78,6 +79,7 @@ class SceneTitle extends GuaScene {
         this.bulletHitOffset = config.hit_offset.value
         // log('debug')
     }
+    // update 系列
     update() {
         super.update()
         // 检测开火和碰撞
@@ -85,15 +87,14 @@ class SceneTitle extends GuaScene {
         this.updateHit()
     }
     updateFire() {
-        for (let z of this.zombies) {
-            let row = z.row
-            for (let p of this.plants) {
-                if (p.row == row) {
+        for (let p of this.plants) {
+            p.sleep()
+            for (let z of this.zombies) {
+                if (z.row == p.row) {
                     p.awake()
                 }
             }
         }
-
     }
     updateHit() {
         // log('bullets', this.bullets.length)

@@ -17,7 +17,6 @@ class GuaScene {
             return e != node
         })
     }
-
     draw() {
         for (var e of this.elements) {
             // this.game.drawImage(e)

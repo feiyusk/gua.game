@@ -18,14 +18,17 @@ class PeaShooter extends GuaAnimation {
         // row 表示在草地的第几排
         this.row = -1
         this.cooldown = 50
-        this.sleep = true
+        this._sleep = true
     }
     awake() {
-        this.sleep = false
+        this._sleep = false
+    }
+    sleep() {
+        this._sleep = true
     }
     fire() {
         // 没有僵尸不发射子弹
-        if (this.sleep) {
+        if (this._sleep) {
             return
         }
         this.cooldown--
