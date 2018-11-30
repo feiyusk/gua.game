@@ -22,7 +22,7 @@ var Scene = function(game) {
 
     s.draw = function() {
         // draw 背景
-        game.context.fillStyle = "#554"
+        game.context.fillStyle = "#FFF3CC"
         game.context.fillRect(0, 0, 400, 300)
         // draw
         game.drawImage(paddle)
