@@ -3,7 +3,7 @@ const config = {
     cloud_speed: 1,
     enemy_speed: 5,
     bullet_speed: 5,
-    fire_cooldown: 90,
+    fire_cooldown: 9,
 }
 
 class Bullet extends GuaImage {
@@ -32,12 +32,12 @@ class Player extends GuaImage {
     update() {
         this.speed = config.player_speed
         if (this.cooldown > 0) {
-            this.cooldown --
+            this.cooldown--
         }
     }
     fire() {
         if (this.cooldown == 0) {
-            this.cooldown == config.fire_cooldown
+            this.cooldown = config.fire_cooldown
             var x = this.x + this.w / 2
             var y = this.y
             var b = Bullet.new(this.game)

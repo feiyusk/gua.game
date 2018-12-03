@@ -24,12 +24,12 @@ class Player extends GuaImage {
     update() {
         this.speed = config.player_speed
         if (this.cooldown > 0) {
-            this.cooldown --
+            this.cooldown--
         }
     }
     fire() {
         if (this.cooldown == 0) {
-            this.cooldown == config.fire_cooldown
+            this.cooldown = config.fire_cooldown
             var x = this.x + this.w / 2
             var y = this.y
             var b = Bullet.new(this.game)
