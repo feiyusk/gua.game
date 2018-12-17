@@ -44,6 +44,7 @@ class SceneEditor extends GuaScene {
         // bg
         // var bg = GuaImage.new(game, 'bg')
         // this.addElement(bg)
+        
         // tile map
         let map = GuaTileMap.new(game)
         this.addElement(map)
